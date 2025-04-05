@@ -52,15 +52,12 @@ for i in range(len(corr_matrix.columns)):
 
 # Remove correlated features (you can choose to keep one of the correlated features)
 df_selected = df.drop(columns=correlated_features)
-print("\nDataFrame after removing correlated features:")
-df_selected.head()
 
 # features slection based on variances
 numerical_features = df_selected.select_dtypes(include=np.number).columns
 variances = df_selected[numerical_features].var()
 variance_threshold = variances.quantile(0.50)
 selected_features = variances[variances > variance_threshold].index
-print("Selected Features (Variance > {}): {}".format(variance_threshold, selected_features))
 df_selected = df[selected_features]
 df_selected.head()
 
@@ -84,3 +81,23 @@ x = pd.DataFrame(x_yeo_johnson, columns = x.columns)
 # spliting the data in testing and training 
 from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=1)
+
+#model training
+def model_evaluation(model, x_train=x_train, y_train=y_train, x_test=x_test, y_test=y_test):
+  from sklearn.metrics import confusion_matrix, classification_report,f1_score
+  model.fit(x_train, y_train)
+  y_pred_train = model.predict(x_train)
+  y_pred_test = model.predict(x_test)
+  print("Training Metrics:")
+  print(classification_report(y_train, y_pred_train))
+  print(confusion_matrix(y_train, y_pred_train))
+  print(f1_score(y_train, y_pred_train,pos_label='phishing'))
+  print("Testing Metrics:")
+  print(classification_report(y_test, y_pred_test))
+  print(confusion_matrix(y_test, y_pred_test))
+  print(f1_score(y_test, y_pred_test,pos_label='phishing'))
+
+
+from sklearn.svm import SVC
+svc = SVC(C=0.13066739238053282,gamma=0.05399484409787434)
+model_evaluation(svc)
