@@ -286,7 +286,7 @@ def preprocess_features_for_model(features_dict, le_scheme, le_netloc, le_path, 
 
 
 # --- Streamlit App User Interface ---
-st.title("🎣 Phishing URL Detector v2")
+st.title("🎣 Phishing URL Detector")
 st.markdown("""
 Analyzes URL structure and uses a pre-trained model for prediction.
 Optionally provide context about the site (content, reputation) for a more informed assessment (Note: user context **not** used by the current prediction model).
