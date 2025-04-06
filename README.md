@@ -9,5 +9,6 @@
 * Improve brand reputation: By proactively identifying and mitigating phishing attacks that impersonate their brand, organizations can protect their customers and maintain a positive brand image.
 
 * Reduce operational costs: Automating the detection of phishing sites can reduce the manual effort required to identify and respond to these threats, freeing up security personnel to focus on other tasks.
-###deployed on streamlit
+
+### Deployed on streamlit
 * phishingml-6gnzinbaxc78olhsburolm.streamlit.app
